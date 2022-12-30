@@ -250,3 +250,24 @@ exports.tambahSosialMedia = function (req, res) {
             }
         });
 };
+
+//menambahkan data pendaftaran (membuat pendaftaran)
+exports.buatPendaftaranFranchise = function (req, res) {
+    var status = "Diproses"
+    var kota = req.body.kota;
+    var lokasi = req.body.lokasi;
+    var foto_ktp = req.body.foto_ktp;
+    var id_franchisee = req.body.id_franchisee;
+    var id_franchisor = req.body.id_franchisor;
+    var id_paket = req.body.id_paket;
+
+    connection.query('INSERT INTO pendaftaran (status, kota, lokasi, foto_ktp, id_franchisee, id_franchisor, id_paket) VALUES (?,?,?,?,?,?,?)',
+        [status, kota, lokasi, foto_ktp, id_franchisee, id_franchisor, id_paket],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil mendaftar Franchise!", res);
+            }
+        });
+};

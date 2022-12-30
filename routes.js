@@ -57,4 +57,7 @@ module.exports = function(app) {
 
     app.route('/franchisor/:id/tambahSosialMedia')
         .post(jsonku.tambahSosialMedia);
+    
+    app.route('/franchisee/:id/buatPendaftaran')
+        .post(jsonku.buatPendaftaranFranchise);
 }
