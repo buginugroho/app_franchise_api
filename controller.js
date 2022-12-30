@@ -214,3 +214,39 @@ exports.registerFranchisor = function (req, res) {
             }
         });
 };
+
+//menambahkan data paket franchise
+exports.tambahPaketFranchise = function (req, res) {
+    var nama_paket = req.body.nama_paket;
+    var harga = req.body.harga;
+    var fasilitas = req.body.fasilitas;
+    var deskripsi = req.body.deskripsi;
+    var id_franchisor = req.body.id_franchisor;
+
+    connection.query('INSERT INTO paket_franchise (nama_paket, harga, fasilitas, deskripsi, id_franchisor) VALUES (?,?,?,?,?)',
+        [nama_paket, harga, fasilitas, deskripsi, id_franchisor],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil membuat akun Franchisor!", res);
+            }
+        });
+};
+
+//menambahkan data sosial media
+exports.tambahSosialMedia = function (req, res) {
+    var platform_sosmed = req.body.platform_sosmed;
+    var alamat_sosmed = req.body.alamat_sosmed;
+    var id_franchisor = req.body.id_franchisor;
+
+    connection.query('INSERT INTO sosial_media (platform_sosmed, alamat_sosmed, id_franchisor) VALUES (?,?,?)',
+        [platform_sosmed, alamat_sosmed, id_franchisor],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil membuat akun Franchisor!", res);
+            }
+        });
+};

@@ -52,4 +52,9 @@ module.exports = function(app) {
     app.route('/registerFranchisor')
         .post(jsonku.registerFranchisor);
 
+    app.route('/franchisor/:id/tambahPaket')
+        .post(jsonku.tambahPaketFranchise);
+
+    app.route('/franchisor/:id/tambahSosialMedia')
+        .post(jsonku.tambahSosialMedia);
 }
