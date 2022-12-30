@@ -7,6 +7,8 @@ exports.index = function (req, res) {
     response.ok("REST API berhasil dijalankan", res)
 };
 
+/* Kode menampilkan data (GET) */
+
 //menampilkan data semua franchise
 exports.tampilSemuaFranchise = function (req, res) {
     connection.query('SELECT * FROM franchisor', function (error, rows, fields) {
@@ -167,6 +169,48 @@ exports.tampilPendaftaranFranchiseeBerdasarkanId = function (req, res) {
                 console.log(error);
             } else {
                 response.ok(rows, res);
+            }
+        });
+};
+
+/* Kode menambahkan data (POST) */
+
+//menambahkan data pengguna franchisee
+exports.registerFranchisee = function (req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var nama = req.body.nama;
+    var email = req.body.email;
+    var nomor_hp = req.body.nomor_hp;
+
+    connection.query('INSERT INTO franchisee (username, password, nama, email, nomor_hp) VALUES (?,?,?,?,?)',
+        [username, password, nama, email, nomor_hp],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil membuat akun Franchisee!", res);
+            }
+        });
+};
+
+//menambahkan data pengguna franchisor
+exports.registerFranchisor = function (req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var nama = req.body.nama;
+    var email = req.body.email;
+    var nomor_hp = req.body.nomor_hp;
+    var pusat_lokasi = req.body.pusat_lokasi;
+    var tahun_berdiri = req.body.tahun_berdiri;
+
+    connection.query('INSERT INTO franchisor (username, password, nama, email, nomor_hp, pusat_lokasi, tahun_berdiri) VALUES (?,?,?,?,?,?,?)',
+        [username, password, nama, email, nomor_hp, pusat_lokasi, tahun_berdiri],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil membuat akun Franchisor!", res);
             }
         });
 };

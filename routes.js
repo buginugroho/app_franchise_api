@@ -6,6 +6,8 @@ module.exports = function(app) {
     app.route('/')
         .get(jsonku.index);
 
+    /* Route menampilkan data (GET) */
+
     app.route('/franchisor')
         .get(jsonku.tampilSemuaFranchise);
     
@@ -41,4 +43,13 @@ module.exports = function(app) {
     
     app.route('/franchisee/:id_franchisee/pendaftaran/:id_pendaftaran')
         .get(jsonku.tampilPendaftaranFranchiseeBerdasarkanId);
+
+    /* Route menambahkan data (POST) */
+
+    app.route('/registerFranchisee')
+        .post(jsonku.registerFranchisee);
+
+    app.route('/registerFranchisor')
+        .post(jsonku.registerFranchisor);
+
 }
