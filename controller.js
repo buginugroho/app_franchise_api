@@ -86,3 +86,31 @@ exports.tampilNestedFranchise = function (req, res) {
         }
     )
 }
+
+//menampilkan data semua sosial media pada satu franchise
+exports.tampilSosialMedia = function (req, res) {
+    let id = req.params.id;
+    connection.query('SELECT * FROM sosial_media WHERE id_franchisor = ?', [id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok(rows, res);
+            }
+        });
+};
+
+//menampilkan data paket franchise berdasarkan id
+exports.tampilSosialMediaBerdasarkanId = function (req, res) {
+    let id_franchisor = req.params.id_franchisor;
+    let id_sosmed = req.params.id_sosmed;
+    connection.query('SELECT * FROM sosial_media WHERE id_franchisor = ? AND id_sosmed = ?',
+        [id_franchisor, id_sosmed],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok(rows, res);
+            }
+        });
+};

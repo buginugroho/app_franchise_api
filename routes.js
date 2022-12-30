@@ -23,4 +23,10 @@ module.exports = function(app) {
 
     app.route('/franchisor/:id/nested')
         .get(jsonku.tampilNestedFranchise);
+
+    app.route('/franchisor/:id/sosmed')
+        .get(jsonku.tampilSosialMedia);
+    
+    app.route('/franchisor/:id_franchisor/sosmed/:id_sosmed')
+        .get(jsonku.tampilSosialMediaBerdasarkanId);
 }
