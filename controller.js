@@ -114,3 +114,59 @@ exports.tampilSosialMediaBerdasarkanId = function (req, res) {
             }
         });
 };
+
+//menampilkan data semua pendaftaran pada satu franchisor
+exports.tampilPendaftaranFranchisor = function (req, res) {
+    let id = req.params.id;
+    connection.query('SELECT * FROM pendaftaran WHERE id_franchisor = ?', [id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok(rows, res);
+            }
+        });
+};
+
+//menampilkan data pendaftaran sisi franchisor berdasarkan id
+exports.tampilPendaftaranFranchisorBerdasarkanId = function (req, res) {
+    let id_franchisor = req.params.id_franchisor;
+    let id_pendaftaran = req.params.id_pendaftaran;
+    connection.query('SELECT * FROM pendaftaran WHERE id_franchisor = ? AND id_pendaftaran = ?',
+        [id_franchisor, id_pendaftaran],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok(rows, res);
+            }
+        });
+};
+
+//menampilkan data semua pendaftaran pada satu franchisee
+exports.tampilPendaftaranFranchisee = function (req, res) {
+    let id = req.params.id;
+    connection.query('SELECT * FROM pendaftaran WHERE id_franchisee = ?', [id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok(rows, res);
+            }
+        });
+};
+
+//menampilkan data pendaftaran sisi franchisee berdasarkan id
+exports.tampilPendaftaranFranchiseeBerdasarkanId = function (req, res) {
+    let id_franchisee = req.params.id_franchisee;
+    let id_pendaftaran = req.params.id_pendaftaran;
+    connection.query('SELECT * FROM pendaftaran WHERE id_franchisee = ? AND id_pendaftaran = ?',
+        [id_franchisee, id_pendaftaran],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok(rows, res);
+            }
+        });
+};
