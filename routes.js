@@ -57,7 +57,21 @@ module.exports = function(app) {
 
     app.route('/franchisor/:id/tambahSosialMedia')
         .post(jsonku.tambahSosialMedia);
-    
+
     app.route('/franchisee/:id/buatPendaftaran')
         .post(jsonku.buatPendaftaranFranchise);
+
+    /* Route mengubah data (PUT) */
+
+    app.route('/franchisee/:id/editData')
+        .put(jsonku.editFranchisee);
+    
+    app.route('/franchisor/:id/editData')
+        .put(jsonku.editFranchisor);
+
+    app.route('/franchisor/:id_franchisor/paket/:id_paket/editData')
+        .put(jsonku.editPaketFranchise);
+
+    app.route('/franchisor/:id_franchisor/sosmed/:id_sosmed/editData')
+        .put(jsonku.editSosialMedia);
 }

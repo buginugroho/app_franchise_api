@@ -189,7 +189,7 @@ exports.registerFranchisee = function (req, res) {
             if (error) {
                 console.log(error);
             } else {
-                response.ok("Berhasil membuat akun Franchisee!", res);
+                response.ok("Berhasil membuat akun Franchisee", res);
             }
         });
 };
@@ -210,7 +210,7 @@ exports.registerFranchisor = function (req, res) {
             if (error) {
                 console.log(error);
             } else {
-                response.ok("Berhasil membuat akun Franchisor!", res);
+                response.ok("Berhasil membuat akun Franchisor", res);
             }
         });
 };
@@ -229,7 +229,7 @@ exports.tambahPaketFranchise = function (req, res) {
             if (error) {
                 console.log(error);
             } else {
-                response.ok("Berhasil membuat akun Franchisor!", res);
+                response.ok("Berhasil menambahkan paket franchise", res);
             }
         });
 };
@@ -246,7 +246,7 @@ exports.tambahSosialMedia = function (req, res) {
             if (error) {
                 console.log(error);
             } else {
-                response.ok("Berhasil membuat akun Franchisor!", res);
+                response.ok("Berhasil menambahkan alamat sosial media", res);
             }
         });
 };
@@ -267,7 +267,86 @@ exports.buatPendaftaranFranchise = function (req, res) {
             if (error) {
                 console.log(error);
             } else {
-                response.ok("Berhasil mendaftar Franchise!", res);
+                response.ok("Berhasil mendaftar franchise", res);
+            }
+        });
+};
+
+/* Kode mengubah data (PUT) */
+
+//mengubah data franchisee berdasarkan id
+exports.editFranchisee = function (req, res) {
+    var id = req.body.id_franchisee;
+    var nama = req.body.nama;
+    var email = req.body.email;
+    var nomor_hp = req.body.nomor_hp;
+
+    connection.query('UPDATE franchisee SET nama=?, email=?, nomor_hp=? WHERE id_franchisee=?',
+        [nama, email, nomor_hp, id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil mengubah data pengguna", res)
+            }
+        });
+};
+
+//mengubah data franchisor berdasarkan id
+exports.editFranchisor = function (req, res) {
+    var id = req.body.id_franchisor;
+    var nama = req.body.nama;
+    var email = req.body.email;
+    var nomor_hp = req.body.nomor_hp;
+    var pusat_lokasi = req.body.pusat_lokasi;
+    var tahun_berdiri = req.body.tahun_berdiri;
+    var deskripsi = req.body.deskripsi;
+
+    connection.query('UPDATE franchisor SET nama=?, email=?, nomor_hp=?, pusat_lokasi=?, tahun_berdiri=?, deskripsi=? WHERE id_franchisor=?',
+        [nama, email, nomor_hp, pusat_lokasi, tahun_berdiri, deskripsi, id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil mengubah data franchise", res)
+            }
+        });
+};
+
+//mengubah data paket franchise
+exports.editPaketFranchise = function (req, res) {
+    var id_franchisor = req.body.id_franchisor;
+    var id_paket = req.body.id_paket;
+    var nama_paket = req.body.nama_paket;
+    var harga = req.body.harga;
+    var fasilitas = req.body.fasilitas;
+    var deskripsi = req.body.deskripsi;
+
+    connection.query('UPDATE paket_franchise SET nama_paket=?, harga=?, fasilitas=?, deskripsi=? WHERE id_franchisor=? AND id_paket=?',
+        [nama_paket, harga, fasilitas, deskripsi, id_franchisor, id_paket],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil mengubah data paket franchise", res)
+            }
+        });
+};
+
+//mengubah data sosial media
+exports.editSosialMedia = function (req, res) {
+    var id_franchisor = req.body.id_franchisor;
+    var id_sosmed = req.body.id_sosmed;
+    var platform_sosmed = req.body.platform_sosmed;
+    var alamat_sosmed = req.body.alamat_sosmed;
+
+    connection.query('UPDATE sosial_media SET platform_sosmed=?, alamat_sosmed=? WHERE id_franchisor=? AND id_sosmed=?',
+        [platform_sosmed, alamat_sosmed, id_franchisor, id_sosmed],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil mengubah data sosial media", res)
             }
         });
 };
