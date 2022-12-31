@@ -74,4 +74,15 @@ module.exports = function(app) {
 
     app.route('/franchisor/:id_franchisor/sosmed/:id_sosmed/editData')
         .put(jsonku.editSosialMedia);
+
+    /* Route menghapus data (DELETE) */
+
+    app.route('/franchisor/:id_franchisor/paket/:id_paket/hapusData')
+        .put(jsonku.hapusPaketFranchise);
+
+    app.route('/franchisor/:id_franchisor/sosmed/:id_sosmed/hapusData')
+        .put(jsonku.hapusSosialMedia);
+
+    app.route('/franchisee/:id/hapusPendaftaran')
+        .post(jsonku.hapusPendaftaranFranchise);
 }

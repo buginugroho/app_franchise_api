@@ -350,3 +350,54 @@ exports.editSosialMedia = function (req, res) {
             }
         });
 };
+
+/* Kode menghapus data (DELETE) */
+
+//menghapus data paket franchise
+exports.hapusPaketFranchise = function (req, res) {
+    var id_franchisor = req.body.id_franchisor;
+    var id_paket = req.body.id_paket;
+
+    connection.query('DELETE FROM paket_franchise WHERE id_franchisor=? AND id_paket=?',
+        [id_franchisor, id_paket],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil menghapus data paket franchise", res)
+            }
+        });
+};
+
+//menghapus data sosial media
+exports.hapusSosialMedia = function (req, res) {
+    var id_franchisor = req.body.id_franchisor;
+    var id_sosmed = req.body.id_sosmed;
+
+    connection.query('DELETE FROM sosial_media WHERE id_franchisor=? AND id_sosmed=?',
+        [id_franchisor, id_sosmed],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil menghapus data paket franchise", res)
+            }
+        });
+};
+
+//menghapus data pendaftaran franchise
+exports.hapusPendaftaranFranchise = function (req, res) {
+    var id_franchisee = req.body.id_franchisee;
+    var id_franchisor = req.body.id_franchisor;
+    var id_paket = req.body.id_paket;
+
+    connection.query('DELETE FROM pendaftaran WHERE id_franchisee=? AND id_franchisor=? AND id_paket=?',
+        [id_franchisee, id_franchisor, id_paket],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil menghapus data pendaftaran franchise", res)
+            }
+        });
+};
